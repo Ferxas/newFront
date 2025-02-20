@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from 'axios';
 
 const API_URL = axios.create({
     baseURL: "https://test-backend-mauve-psi.vercel.app",
@@ -9,7 +9,7 @@ const API_URL = axios.create({
 
 export const getClients = async () => {
     try {
-        const response = await axios.get(API_URL, { withCredentials: true });
+        const response = await API_URL.get('/api/clients', { withCredentials: true });
         return response.data.data;
     } catch (error) {
         console.error(error);
@@ -19,7 +19,7 @@ export const getClients = async () => {
 
 export const createClient = async (clientData) => {
     try {
-        const response = await axios.post(API_URL, clientData, { withCredentials: true });
+        const response = await API_URL.post('/api/clients', clientData, { withCredentials: true });
         return response.data.data;
     } catch (error) {
         console.error("Hubo un error al crear el cliente: ", error);
@@ -29,7 +29,7 @@ export const createClient = async (clientData) => {
 
 export const getClientById = async (id, clientData) => {
     try {
-        const response = await axios.get(`${API_URL}/${id}`, { withCredentials: true });
+        const response = await API_URL.get(`${'/api/clients'}/${id}`, { withCredentials: true });
         return response.data.data;
     } catch (error) {
         console.error("Hubo un error al obtener el cliente: ", error);
@@ -39,7 +39,7 @@ export const getClientById = async (id, clientData) => {
 
 export const updateClient = (id, clientData) => {
     try {
-        const response = axios.put(`${API_URL}/${id}`, clientData, { withCredentials: true });
+        const response = API_URL.put(`${'/api/clients'}/${id}`, clientData, { withCredentials: true });
         return response.data.data;
     } catch (error) {
         console.error("Hubo un error al actualizar el cliente: ", error);
@@ -49,7 +49,7 @@ export const updateClient = (id, clientData) => {
 
 export const deleteClient = async (id) => {
     try {
-        const response = await axios.delete(`${API_URL}/${id}`, { withCredentials: true });
+        const response = await API_URL.delete(`${'/api/clients'}/${id}`, { withCredentials: true });
         return response.data.data;
     } catch (error) {
         console.error("Hubo un error al eliminar el cliente: ", error);

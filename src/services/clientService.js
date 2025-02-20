@@ -4,12 +4,13 @@ const API_URL = axios.create({
     baseURL: "https://test-backend-mauve-psi.vercel.app",
     headers: {
         'Content-Type': 'application/json'
-    }
+    },
+    withCredentials: true,
 })
 
 export const getClients = async () => {
     try {
-        const response = await API_URL.get('/api/clients', { withCredentials: true });
+        const response = await API_URL.get('/api/clients');
         return response.data.data;
     } catch (error) {
         console.error(error);
@@ -19,7 +20,7 @@ export const getClients = async () => {
 
 export const createClient = async (clientData) => {
     try {
-        const response = await API_URL.post('/api/clients', clientData, { withCredentials: true });
+        const response = await API_URL.post('/api/clients', clientData);
         return response.data.data;
     } catch (error) {
         console.error("Hubo un error al crear el cliente: ", error);
@@ -29,7 +30,7 @@ export const createClient = async (clientData) => {
 
 export const getClientById = async (id, clientData) => {
     try {
-        const response = await API_URL.get(`${'/api/clients'}/${id}`, { withCredentials: true });
+        const response = await API_URL.get(`${'/api/clients'}/${id}`);
         return response.data.data;
     } catch (error) {
         console.error("Hubo un error al obtener el cliente: ", error);
@@ -39,7 +40,7 @@ export const getClientById = async (id, clientData) => {
 
 export const updateClient = (id, clientData) => {
     try {
-        const response = API_URL.put(`${'/api/clients'}/${id}`, clientData, { withCredentials: true });
+        const response = API_URL.put(`${'/api/clients'}/${id}`, clientData);
         return response.data.data;
     } catch (error) {
         console.error("Hubo un error al actualizar el cliente: ", error);
@@ -49,7 +50,7 @@ export const updateClient = (id, clientData) => {
 
 export const deleteClient = async (id) => {
     try {
-        const response = await API_URL.delete(`${'/api/clients'}/${id}`, { withCredentials: true });
+        const response = await API_URL.delete(`${'/api/clients'}/${id}`);
         return response.data.data;
     } catch (error) {
         console.error("Hubo un error al eliminar el cliente: ", error);

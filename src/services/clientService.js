@@ -1,6 +1,11 @@
 import axios from 'axios'
 
-const API_URL = 'https://test-backend-mauve-psi.vercel.app'
+const API_URL = axios.create({
+    baseURL: "https://test-backend-mauve-psi.vercel.app",
+    headers: {
+        'Content-Type': 'application/json'
+    }
+})
 
 export const getClients = async () => {
     try {
